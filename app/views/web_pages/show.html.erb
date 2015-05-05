@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @web_page.url %>
+</p>
+
+<p>
+  <strong>Capture image path:</strong>
+  <%= @web_page.capture_image_path %>
+</p>
+
+<p>
+  <strong>Layout pattern:</strong>
+  <%= @web_page.layout_pattern_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @web_page.note %>
+</p>
+
+<%= link_to 'Edit', edit_web_page_path(@web_page) %> |
+<%= link_to 'Back', web_pages_path %>
