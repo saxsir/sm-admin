@@ -1,0 +1,2 @@
+module LayoutPatternsHelper
+end

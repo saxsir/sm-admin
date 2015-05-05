@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @layout_pattern.name %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @layout_pattern.note %>
+</p>
+
+<%= link_to 'Edit', edit_layout_pattern_path(@layout_pattern) %> |
+<%= link_to 'Back', layout_patterns_path %>
