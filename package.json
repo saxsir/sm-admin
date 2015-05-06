@@ -1,0 +1,6 @@
+{
+  "name": "admin.smart-markup",
+  "dependencies": {
+    "phantomjs": "^1.9.16"
+  }
+}
