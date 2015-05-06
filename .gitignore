@@ -27,3 +27,6 @@ doc/
 .DS_Store
 .idea
 .secret
+
+# Ignore npm packages.
+node_modules
