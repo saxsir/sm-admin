@@ -61,8 +61,9 @@ class WebPagesController < ApplicationController
     end
   end
 
+  # GET /web_pages/classify
   def classify
-    @web_pages = WebPage.where.not(capture_image_path: nil).where(layout_pattern_id: nil)
+    @web_page = WebPage.where.not(capture_image_path: nil).find_by(layout_pattern_id: nil)
   end
 
   private
