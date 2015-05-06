@@ -11,5 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap
+ *= require lightbox2/css/lightbox
  *= require_self
  */
