@@ -19,10 +19,21 @@ class HelperScript
   end
 
   def self.capture_images
-    # WebPage.where(capture_image_path: [nil, '']).each do |page|
-      # p page.url
-    # end
-    res = `node_modules/phantomjs/bin/phantomjs bin/sample.js`
-    p res
+    WebPage.where(capture_image_path: [nil, ''])
+    .each.with_index(1) do |page, i|
+      status = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}" "#{page.id}"`.chomp
+
+      puts "#{i}: #{status}, page_id=#{page.id}"
+
+      if status == 'success'
+        #TODO: capture_image_pathのカラムはなくてもいい（idでファイルパスが決まるので）
+        page.capture_image_path = "#{page.id}.png"
+        begin
+          page.save
+        rescue => err
+          p err.message
+        end
+      end
+    end
   end
 end
