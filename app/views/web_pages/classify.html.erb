@@ -4,21 +4,4 @@
 
 <%= image_tag("screen-shots/#{@web_page.capture_image_path}") %>
 
-  <tbody>
-    <% @web_pages.each do |web_page| %>
-      <tr>
-        <td><%= web_page.url %></td>
-        <td><%= web_page.capture_image_path %></td>
-        <td><%= web_page.layout_pattern_id %></td>
-        <td><%= web_page.note %></td>
-        <td><%= link_to 'Show', web_page %></td>
-        <td><%= link_to 'Edit', edit_web_page_path(web_page) %></td>
-        <td><%= link_to 'Destroy', web_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Web page', new_web_page_path %>
+<%= render 'form' %>
