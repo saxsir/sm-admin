@@ -1,3 +1,6 @@
+install:
+	bundle install --path vendor/bundle
+	npm install
 server:
 	./bin/rails server -b 0.0.0.0
 capture-bg-run:
