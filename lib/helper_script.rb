@@ -5,7 +5,7 @@ class HelperScript
     #TODO: ファイル名（引数）がなかったらコマンドの使用例を表示する
     File.open(file_path) do |f|
       f.each_line do |line|
-        web_page = WebPage.new(:url => line)
+        web_page = WebPage.new(:url => line.chomp)
 
         begin
           web_page.save
