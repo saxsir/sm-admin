@@ -2,6 +2,9 @@
 
 <h1>Classify Layout Pattern of Web Pages</h1>
 
-<%= link_to image_tag("screen-shots/#{@web_page.capture_image_path}"), asset_path("screen-shots/#{@web_page.capture_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
-
 <%= render 'form' %>
+
+<hr>
+
+<%= link_to image_tag("screen-shots/#{@web_page.capture_image_path}", :width => '980'), asset_path("screen-shots/#{@web_page.capture_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
+
