@@ -17,4 +17,12 @@ class HelperScript
       end
     end
   end
+
+  def self.capture_images
+    # WebPage.where(capture_image_path: [nil, '']).each do |page|
+      # p page.url
+    # end
+    res = `node_modules/phantomjs/bin/phantomjs bin/sample.js`
+    p res
+  end
 end
