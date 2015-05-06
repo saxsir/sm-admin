@@ -61,6 +61,10 @@ class WebPagesController < ApplicationController
     end
   end
 
+  def classify
+    @web_pages = WebPage.where.not(capture_image_path: nil).where(layout_pattern_id: nil)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_web_page
