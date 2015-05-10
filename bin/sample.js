@@ -10,7 +10,17 @@ page.viewportSize = {
 
 page.open(url, function(status) {
   if(status === "success") {
-    page.render('./app/assets/images/screen-shots/' + pageId + '.png');
+    // e.g. http://example.com/hoge/moge/index.html
+    var basePath = '/tmp/asm-images/';
+    var saveDirPath = url.replace(/^http(s)?:\/\//, '')    // 'example.com/hoge/moge/index.html'
+        .split('/')    // ['example.com', 'hoge', 'moge', 'index.html']
+        .slice(0, -1)    // ['example.com', 'hoge', 'moge']
+        .join('/');    // 'example.com/hoge/moge
+
+    // gyazoにアップロードするまでの一時的な保存場所
+    page.render(basePath + saveDirPath + '/original.png');
+
+    // TODO: レイアウト情報を取得してJSONで吐き出す
   }
   console.log(status); //rubyが受け取る返り値
   phantom.exit();
