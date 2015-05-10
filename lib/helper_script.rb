@@ -1,3 +1,5 @@
+require 'json'
+
 class HelperScript
   def self.insert_multiple_urls
     file_path = ARGV[0]
@@ -24,9 +26,10 @@ class HelperScript
       # TODO: curlで200返ってきたらキャプチャする
       # status = curl hoge hoge
 
-      # TODO: jsonを受け取るようにする
-      status = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}"`.chomp
+      res_json = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}"`.chomp
+      res = JSON.parse(res_json)
 
+      status = res['status']
       puts "#{i}: #{status}, page_id=#{page.id}"
 
       if status == 'success'

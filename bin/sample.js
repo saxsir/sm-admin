@@ -21,7 +21,17 @@ page.open(url, function(status) {
     page.render(basePath + saveDirPath + '/original.png');
 
     // TODO: レイアウト情報を取得してJSONで吐き出す
+    var res = {
+        status: status
+    };
+    console.log(JSON.stringify(res));    // rubyが受け取る返り値
+  } else {
+    // ページを開けなかった場合はstatusだけ返す
+    var errResponse = {
+        status: status
+    };
+    console.log(JSON.stringify(errResponse));
   }
-  console.log(status); //rubyが受け取る返り値
+
   phantom.exit();
 });
