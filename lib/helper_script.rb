@@ -23,9 +23,15 @@ class HelperScript
   def self.capture_images
     WebPage.where(captured_at: [nil])
     .each.with_index(1) do |page, i|
-      # TODO: curlで200返ってきたらキャプチャする
-      # status = curl hoge hoge
 
+      # curlで200レスポンス以外だったらキャプチャ処理しない
+      http_code = `curl -LI "#{page.url}" -o /dev/null -w '%{http_code}\n' -s`.chomp
+      if http_code != '200'
+        puts "#{i}: [HTTP Error] #{http_code}, #{page.url}, page_id=#{page_id}"
+        next
+      end
+
+      # 画面キャプチャ処理、返り値はレイアウト情報
       res_json = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}"`.chomp
       res = JSON.parse(res_json)
 
