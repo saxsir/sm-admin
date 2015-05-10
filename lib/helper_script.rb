@@ -21,8 +21,7 @@ class HelperScript
   end
 
   def self.capture_images
-    # TODO: captured_atカラムが空かどうかで判定する
-    WebPage.where(capture_image_path: [nil, ''])
+    WebPage.where(captured_at: [nil])
     .each.with_index(1) do |page, i|
       # TODO: curlで200返ってきたらキャプチャする
       # status = curl hoge hoge
