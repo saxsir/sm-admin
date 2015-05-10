@@ -21,6 +21,7 @@ class HelperScript
   end
 
   def self.capture_images
+    # TODO: captured_atカラムが空かどうかで判定する
     WebPage.where(capture_image_path: [nil, ''])
     .each.with_index(1) do |page, i|
       # TODO: curlで200返ってきたらキャプチャする
@@ -33,8 +34,8 @@ class HelperScript
       puts "#{i}: #{status}, page_id=#{page.id}"
 
       if status == 'success'
-        page.capture_image_path = "#{page.id}.png"
-        #TODO: 撮影日時も更新する
+        # TODO: 画像の保存場所はgyazoにアップしたタイミングで更新する
+        page.captured_at = Time.zone.now
         begin
           page.save
         rescue => err
