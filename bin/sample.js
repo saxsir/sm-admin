@@ -1,5 +1,4 @@
-var url =  phantom.args[0] || 'http://example.com';
-var id =  phantom.args[1] || '-1' ;
+var url =  phantom.args[0] || 'http://example.com/';
 var page = require('webpage').create();
 
 // ブラウザの解像度はシェアが高いものを参考に決定
@@ -11,7 +10,7 @@ page.viewportSize = {
 
 page.open(url, function(status) {
   if(status === "success") {
-    page.render('./app/assets/images/screen-shots/' + id + '.png');
+    page.render('./app/assets/images/screen-shots/' + pageId + '.png');
   }
   console.log(status); //rubyが受け取る返り値
   phantom.exit();
