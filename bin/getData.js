@@ -15,23 +15,25 @@ page.open(url, function(status) {
     phantom.exit();
   }
 
-  // e.g. http://example.com/hoge/moge/index.html
-  var basePath = '/tmp/asm-images/';
-  var saveDirPath = url.replace(/^http(s)?:\/\//, '')    // 'example.com/hoge/moge/index.html'
-      .split('/')    // ['example.com', 'hoge', 'moge', 'index.html']
-      .slice(0, -1)    // ['example.com', 'hoge', 'moge']
-      .join('/');    // 'example.com/hoge/moge
+  // ajaxでコンテンツを取得しているページ対策(1秒は主観)
+  setTimeout(function() {
+    // e.g. http://example.com/hoge/moge/index.html
+    var basePath = '/tmp/asm-images/';
+    var saveDirPath = url.replace(/^http(s)?:\/\//, '')    // 'example.com/hoge/moge/index.html'
+        .split('/')    // ['example.com', 'hoge', 'moge', 'index.html']
+        .slice(0, -1)    // ['example.com', 'hoge', 'moge']
+        .join('/');    // 'example.com/hoge/moge
 
-  // gyazoにアップロードするまでの一時的な保存場所
-  var tmpImageFilePath = basePath + saveDirPath + '/original.png';
-  page.render(tmpImageFilePath);
+    // gyazoにアップロードするまでの一時的な保存場所
+    var tmpImageFilePath = basePath + saveDirPath + '/original.png';
+    page.render(tmpImageFilePath);
 
-  // TODO: レイアウト情報を取得してJSONで吐き出す
-  var res = {
-      status: status,
-      image_file_path: tmpImageFilePath
-  };
-  console.log(JSON.stringify(res));    // rubyが受け取る返り値
-
-  phantom.exit();
+    // TODO: レイアウト情報を取得してJSONで吐き出す
+    var res = {
+        status: status,
+        image_file_path: tmpImageFilePath
+    };
+    console.log(JSON.stringify(res));    // rubyが受け取る返り値
+    phantom.exit();
+  }, 1000);
 });
