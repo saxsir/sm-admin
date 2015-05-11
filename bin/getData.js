@@ -49,6 +49,7 @@ page.open(url, function(status) {
     var res = {
         status: status,
         original_image_file_path: tmpOriginalImageFilePath,
+        separated_image_file_path: tmpSeparatedImageFilePath,
         layout_data: JSON.stringify(layoutData)
     };
     console.log(JSON.stringify(res));    // rubyが受け取る返り値
