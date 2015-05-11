@@ -18,11 +18,13 @@ page.open(url, function(status) {
         .join('/');    // 'example.com/hoge/moge
 
     // gyazoにアップロードするまでの一時的な保存場所
-    page.render(basePath + saveDirPath + '/original.png');
+    var tmpImageFilePath = basePath + saveDirPath + '/original.png';
+    page.render(tmpImageFilePath);
 
     // TODO: レイアウト情報を取得してJSONで吐き出す
     var res = {
-        status: status
+        status: status,
+        image_file_path: tmpImageFilePath
     };
     console.log(JSON.stringify(res));    // rubyが受け取る返り値
   } else {
