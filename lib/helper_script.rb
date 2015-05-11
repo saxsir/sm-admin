@@ -35,18 +35,23 @@ class HelperScript
       res_json = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}"`.chomp
       res = JSON.parse(res_json)
 
+      # PhantomJSが何らかの理由でこけてたら処理終了
       status = res['status']
-      puts "#{i}: #{status}, page_id=#{page.id}"
-
-      if status == 'success'
-        # TODO: 画像の保存場所はgyazoにアップしたタイミングで更新する
-        page.captured_at = Time.zone.now
-        begin
-          page.save
-        rescue => err
-          p err.message
-        end
+      if status != 'success'
+        puts "#{i}: [PhantomJS Error] #{status}, #{page.url}, page_id=#{page.id}"
+        next
       end
+
+      # TODO: 画像の保存場所はgyazoにアップしたタイミングで更新する
+      # DBの更新処理
+      page.captured_at = Time.zone.now
+      begin
+        page.save
+      rescue => err
+        p err.message
+      end
+
+      puts "#{i}: [Success] #{page.url}, page_id=#{page.id}"
     end
   end
 end
