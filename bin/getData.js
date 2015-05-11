@@ -35,11 +35,15 @@ page.open(url, function(status) {
     page.render(tmpImageFilePath);
 
     // レイアウトデータの取得
-    var res = page.evaluate(function() {
+    var layoutData = page.evaluate(function() {
       return SMScraper.run();
     });
-    res.status = status;
-    res.image_file_path = tmpImageFilePath;
+
+    var res = {
+        status: status,
+        image_file_path: tmpImageFilePath,
+        layout_data: JSON.stringify(layoutData)
+    };
     console.log(JSON.stringify(res));    // rubyが受け取る返り値
     phantom.exit();
   }, 1000);
