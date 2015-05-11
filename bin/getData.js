@@ -40,7 +40,7 @@ page.open(url, function(status) {
     });
 
     // 分割後のキャプチャを撮影
-    page.evaluate((function() {
+    page.evaluate(function() {
       SMScraper.debug();    // ページを書き換え
     });
     var tmpSeparatedImageFilePath = basePath + saveDirPath + '/separated.png';
