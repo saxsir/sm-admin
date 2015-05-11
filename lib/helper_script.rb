@@ -54,6 +54,7 @@ class HelperScript
       # DBの更新処理
       # TODO: サムネイルも保存するようにする（DBにカラム追加）
       page.capture_image_path = gyazo_res_original['url']
+      page.separated_image_path = gyazo_res_separated['url']
       page.captured_at = Time.zone.now
       page.layout_data = res['layout_data']
       begin
