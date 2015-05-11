@@ -42,8 +42,15 @@ class HelperScript
         next
       end
 
-      # TODO: 画像の保存場所はgyazoにアップしたタイミングで更新する
+      # gyazoにキャプチャ画像をアップロード
+      gyazo_res_json = `curl -s https://upload.gyazo.com/api/upload\?access_token\=#{Rails.application.secrets.gyazo_access_token} -F "imagedata=@#{res['image_file_path']}"`.chomp
+      gyazo_res = JSON.parse(gyazo_res_json)
+
+      # TODO: gyazoからエラーが返ってきた場合の処理を追加
+
       # DBの更新処理
+      # TODO: サムネイルも保存するようにする（DBにカラム追加）
+      page.capture_image_path = gyazo_res['url']
       page.captured_at = Time.zone.now
       begin
         page.save
