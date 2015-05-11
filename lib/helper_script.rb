@@ -32,7 +32,7 @@ class HelperScript
       end
 
       # 画面キャプチャ処理、返り値はレイアウト情報
-      res_json = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}"`.chomp
+      res_json = `node_modules/phantomjs/bin/phantomjs bin/getData.js "#{page.url}"`.chomp
       res = JSON.parse(res_json)
 
       # PhantomJSが何らかの理由でこけてたら処理終了
