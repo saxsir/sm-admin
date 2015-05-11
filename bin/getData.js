@@ -9,31 +9,38 @@ page.viewportSize = {
 };
 
 page.open(url, function(status) {
-  if(status === "success") {
+  if (status !== 'success') {
+    var errResponse = {status: status};
+    console.log(JSON.stringify(errResponse));
+    phantom.exit();
+  }
+
+  // ajaxでコンテンツを取得しているページ対策(1秒は主観)
+  setTimeout(function() {
+    if (page.injectJs('../lib/segment-page.js') !== true) {
+      var errResponse = {status: 'injectJs error'};
+      console.log(JSON.stringify(errResponse));
+      phantom.exit();
+    };
+
+    // オリジナル画面のキャプチャ処理
     // e.g. http://example.com/hoge/moge/index.html
     var basePath = '/tmp/asm-images/';
     var saveDirPath = url.replace(/^http(s)?:\/\//, '')    // 'example.com/hoge/moge/index.html'
         .split('/')    // ['example.com', 'hoge', 'moge', 'index.html']
         .slice(0, -1)    // ['example.com', 'hoge', 'moge']
         .join('/');    // 'example.com/hoge/moge
-
     // gyazoにアップロードするまでの一時的な保存場所
     var tmpImageFilePath = basePath + saveDirPath + '/original.png';
     page.render(tmpImageFilePath);
 
-    // TODO: レイアウト情報を取得してJSONで吐き出す
-    var res = {
-        status: status,
-        image_file_path: tmpImageFilePath
-    };
+    // レイアウトデータの取得
+    var res = page.evaluate(function() {
+      return SMScraper.run();
+    });
+    res.status = status;
+    res.image_file_path = tmpImageFilePath;
     console.log(JSON.stringify(res));    // rubyが受け取る返り値
-  } else {
-    // ページを開けなかった場合はstatusだけ返す
-    var errResponse = {
-        status: status
-    };
-    console.log(JSON.stringify(errResponse));
-  }
-
-  phantom.exit();
+    phantom.exit();
+  }, 1000);
 });
