@@ -46,6 +46,9 @@ class HelperScript
       gyazo_res_json_original = `curl -s https://upload.gyazo.com/api/upload\?access_token\=#{Rails.application.secrets.gyazo_access_token} -F "imagedata=@#{res['original_image_file_path']}"`.chomp
       gyazo_res_original = JSON.parse(gyazo_res_json_original)
 
+      gyazo_res_json_separated = `curl -s https://upload.gyazo.com/api/upload\?access_token\=#{Rails.application.secrets.gyazo_access_token} -F "imagedata=@#{res['separated_image_file_path']}"`.chomp
+      gyazo_res_separated = JSON.parse(gyazo_res_json_separated)
+
       # TODO: gyazoからエラーが返ってきた場合の処理を追加
 
       # DBの更新処理
