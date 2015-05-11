@@ -39,6 +39,13 @@ page.open(url, function(status) {
       return SMScraper.run();
     });
 
+    // 分割後のキャプチャを撮影
+    page.evaluate((function() {
+      SMScraper.debug();    // ページを書き換え
+    });
+    var tmpSeparatedImageFilePath = basePath + saveDirPath + '/separated.png';
+    page.render(tmpSeparatedImageFilePath);
+
     var res = {
         status: status,
         image_file_path: tmpImageFilePath,
