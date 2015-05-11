@@ -52,6 +52,7 @@ class HelperScript
       # TODO: サムネイルも保存するようにする（DBにカラム追加）
       page.capture_image_path = gyazo_res['url']
       page.captured_at = Time.zone.now
+      page.layout_data = res['layout_data']
       begin
         page.save
       rescue => err
