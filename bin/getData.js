@@ -31,8 +31,8 @@ page.open(url, function(status) {
         .slice(0, -1)    // ['example.com', 'hoge', 'moge']
         .join('/');    // 'example.com/hoge/moge
     // gyazoにアップロードするまでの一時的な保存場所
-    var tmpImageFilePath = basePath + saveDirPath + '/original.png';
-    page.render(tmpImageFilePath);
+    var tmpOriginalImageFilePath = basePath + saveDirPath + '/original.png';
+    page.render(tmpOriginalImageFilePath);
 
     // レイアウトデータの取得
     var layoutData = page.evaluate(function() {
