@@ -1,3 +1,5 @@
+require 'json'
+
 class HelperScript
   def self.insert_multiple_urls
     file_path = ARGV[0]
@@ -19,21 +21,44 @@ class HelperScript
   end
 
   def self.capture_images
-    WebPage.where(capture_image_path: [nil, ''])
+    WebPage.where(captured_at: [nil])
     .each.with_index(1) do |page, i|
-      status = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}" "#{page.id}"`.chomp
 
-      puts "#{i}: #{status}, page_id=#{page.id}"
-
-      if status == 'success'
-        #TODO: capture_image_pathのカラムはなくてもいい（idでファイルパスが決まるので）
-        page.capture_image_path = "#{page.id}.png"
-        begin
-          page.save
-        rescue => err
-          p err.message
-        end
+      # curlで200レスポンス以外だったらキャプチャ処理しない
+      http_code = `curl -LI "#{page.url}" -o /dev/null -w '%{http_code}\n' -s`.chomp
+      if http_code != '200'
+        puts "#{i}: [HTTP Error] #{http_code}, #{page.url}, page_id=#{page_id}"
+        next
       end
+
+      # 画面キャプチャ処理、返り値はレイアウト情報
+      res_json = `node_modules/phantomjs/bin/phantomjs bin/sample.js "#{page.url}"`.chomp
+      res = JSON.parse(res_json)
+
+      # PhantomJSが何らかの理由でこけてたら処理終了
+      status = res['status']
+      if status != 'success'
+        puts "#{i}: [PhantomJS Error] #{status}, #{page.url}, page_id=#{page.id}"
+        next
+      end
+
+      # gyazoにキャプチャ画像をアップロード
+      gyazo_res_json = `curl -s https://upload.gyazo.com/api/upload\?access_token\=#{Rails.application.secrets.gyazo_access_token} -F "imagedata=@#{res['image_file_path']}"`.chomp
+      gyazo_res = JSON.parse(gyazo_res_json)
+
+      # TODO: gyazoからエラーが返ってきた場合の処理を追加
+
+      # DBの更新処理
+      # TODO: サムネイルも保存するようにする（DBにカラム追加）
+      page.capture_image_path = gyazo_res['url']
+      page.captured_at = Time.zone.now
+      begin
+        page.save
+      rescue => err
+        p err.message
+      end
+
+      puts "#{i}: [Success] #{page.url}, page_id=#{page.id}"
     end
   end
 end

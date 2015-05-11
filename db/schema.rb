@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506060233) do
+ActiveRecord::Schema.define(version: 20150508100452) do
 
   create_table "layout_patterns", force: :cascade do |t|
     t.string   "name",       null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150506060233) do
     t.text     "note"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.datetime "captured_at"
   end
 
   add_index "web_pages", ["url"], name: "index_web_pages_on_url", unique: true
