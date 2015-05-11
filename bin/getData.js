@@ -31,17 +31,25 @@ page.open(url, function(status) {
         .slice(0, -1)    // ['example.com', 'hoge', 'moge']
         .join('/');    // 'example.com/hoge/moge
     // gyazoにアップロードするまでの一時的な保存場所
-    var tmpImageFilePath = basePath + saveDirPath + '/original.png';
-    page.render(tmpImageFilePath);
+    var tmpOriginalImageFilePath = basePath + saveDirPath + '/original.png';
+    page.render(tmpOriginalImageFilePath);
 
     // レイアウトデータの取得
     var layoutData = page.evaluate(function() {
       return SMScraper.run();
     });
 
+    // 分割後のキャプチャを撮影
+    page.evaluate(function() {
+      SMScraper.debug();    // ページを書き換え
+    });
+    var tmpSeparatedImageFilePath = basePath + saveDirPath + '/separated.png';
+    page.render(tmpSeparatedImageFilePath);
+
     var res = {
         status: status,
-        image_file_path: tmpImageFilePath,
+        original_image_file_path: tmpOriginalImageFilePath,
+        separated_image_file_path: tmpSeparatedImageFilePath,
         layout_data: JSON.stringify(layoutData)
     };
     console.log(JSON.stringify(res));    // rubyが受け取る返り値
