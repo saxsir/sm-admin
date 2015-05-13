@@ -1,5 +1,5 @@
 class WebPagesController < ApplicationController
-  before_action :set_web_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_web_page, only: [:show, :edit, :update, :destroy, :classify]
 
   # GET /web_pages
   # GET /web_pages.json
@@ -61,9 +61,8 @@ class WebPagesController < ApplicationController
     end
   end
 
-  # GET /web_pages/classify
+  # GET /web_pages/classify/1
   def classify
-    @web_page = WebPage.where.not(capture_image_path: nil).find_by(layout_pattern_id: nil)
   end
 
   private
