@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require lightbox2/js/lightbox
+//= require slider-pro/dist/js/jquery.sliderPro
 //= require_tree .

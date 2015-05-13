@@ -12,6 +12,6 @@
  *
  *= require_tree .
  *= require bootstrap
- *= require lightbox2/css/lightbox
+ *= require slider-pro/dist/css/slider-pro
  *= require_self
  */

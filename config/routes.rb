@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'web_pages/classify'
+  get 'web_pages/classify/:id' => 'web_pages#classify'
   resources :layout_patterns
   resources :web_pages
   # The priority is based upon order of creation: first created -> highest priority.

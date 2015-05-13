@@ -2,9 +2,46 @@
 
 <h1>Classify Layout Pattern of Web Pages</h1>
 
-<%= render 'form' %>
+<%= link_to 'next', controller: 'web_pages', action: 'classify', id: @web_page.id + 1 %>
+
+<%= form_for(@web_page) do |f| %>
+  <% if @web_page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@web_page.errors.count, "error") %> prohibited this web_page from being saved:</h2>
+
+      <ul>
+      <% @web_page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= @web_page.url %>
+
+  <div class="field">
+    <%= f.label :layout_pattern_id %><br>
+    <%= f.number_field :layout_pattern_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <hr>
 
-<%= link_to image_tag("screen-shots/#{@web_page.capture_image_path}", :width => '980'), asset_path("screen-shots/#{@web_page.capture_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
+<div class="slider-pro" id="my-slider">
+    <div class="sp-slides">
+        <!-- Slide 1 -->
+        <div class="sp-slide">
+            <%= image_tag("#{@web_page.capture_image_path}", :class => 'sp-image') %>
+            <%# <img class="sp-image" src="path/to/image1.jpg"/> %>
+        </div>
 
+        <!-- Slide 2 -->
+        <div class="sp-slide">
+            <%= image_tag("#{@web_page.separated_image_path}", :class => 'sp-image') %>
+        </div>
+    </div>
+</div>
