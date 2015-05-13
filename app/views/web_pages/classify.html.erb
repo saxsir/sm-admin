@@ -29,6 +29,17 @@
 
 <hr>
 
-<%= link_to image_tag("#{@web_page.capture_image_path}", :width => '1366'), asset_path("#{@web_page.capture_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
-<%= link_to image_tag("#{@web_page.separated_image_path}", :width => '1366'), asset_path("#{@web_page.separated_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
+<div class="slider-pro" id="my-slider">
+    <div class="sp-slides">
+        <!-- Slide 1 -->
+        <div class="sp-slide">
+            <%= image_tag("#{@web_page.capture_image_path}", :class => 'sp-image') %>
+            <%# <img class="sp-image" src="path/to/image1.jpg"/> %>
+        </div>
 
+        <!-- Slide 2 -->
+        <div class="sp-slide">
+            <%= image_tag("#{@web_page.separated_image_path}", :class => 'sp-image') %>
+        </div>
+    </div>
+</div>
