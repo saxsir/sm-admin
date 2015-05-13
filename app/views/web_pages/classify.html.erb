@@ -6,5 +6,6 @@
 
 <hr>
 
-<%= link_to image_tag("screen-shots/#{@web_page.capture_image_path}", :width => '980'), asset_path("screen-shots/#{@web_page.capture_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
+<%= link_to image_tag("#{@web_page.capture_image_path}", :width => '1366'), asset_path("#{@web_page.capture_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
+<%= link_to image_tag("#{@web_page.separated_image_path}", :width => '1366'), asset_path("#{@web_page.separated_image_path}"), {:data => {:lightbox => "lightbox-#{@web_page.id}"}} %>
 
