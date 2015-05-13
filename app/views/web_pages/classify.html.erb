@@ -2,6 +2,8 @@
 
 <h1>Classify Layout Pattern of Web Pages</h1>
 
+<%= link_to 'next', controller: 'web_pages', action: 'classify', id: @web_page.id + 1 %>
+
 <%= form_for(@web_page) do |f| %>
   <% if @web_page.errors.any? %>
     <div id="error_explanation">
