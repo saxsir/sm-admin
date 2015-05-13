@@ -2,6 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "bootstrap": "latest",
-    "lightbox2": "latest"
+    "lightbox2": "latest",
+    "slider-pro": "latest"
   }
 }
