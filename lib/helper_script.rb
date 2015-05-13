@@ -30,7 +30,7 @@ class HelperScript
       # curlで200レスポンス以外だったらキャプチャ処理しない
       http_code = `curl -LI "#{page.url}" -o /dev/null -w '%{http_code}\n' -s`.chomp
       if http_code != '200'
-        puts "#{i}: [HTTP Error] #{http_code}, #{page.url}, page_id=#{page_id}"
+        puts "#{i}: [HTTP Error] #{http_code}, #{page.url}, page_id=#{page.id}"
         next
       end
       puts "[curl] #{http_code}"    # debug
@@ -84,7 +84,8 @@ class HelperScript
         page.save
         puts "[sqlite] saved"
       rescue => err
-        p err.message
+        puts "[sqlite error] Could not save page object"
+        # p err.message
       end
     end
   end
