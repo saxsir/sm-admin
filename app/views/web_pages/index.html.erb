@@ -19,8 +19,14 @@
       <tr>
         <td><%= web_page.url %></td>
         <td><%= web_page.layout_pattern_id %></td>
-        <td><%= web_page.capture_image_path %></td>
-        <td><%= web_page.separated_image_path %></td>
+        <td>
+            <% url = web_page.capture_image_path || '' %>
+            <%= link_to url, url %>
+        </td>
+        <td>
+            <% url = web_page.separated_image_path || '' %>
+            <%= link_to url, url %>
+        </td>
         <td><%= web_page.note %></td>
         <td><%= link_to 'Show', web_page %></td>
         <td><%= link_to 'Edit', edit_web_page_path(web_page) %></td>
