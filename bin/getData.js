@@ -17,7 +17,7 @@ page.open(url, function(status) {
 
   // ajaxでコンテンツを取得しているページ対策(1秒は主観)
   setTimeout(function() {
-    if (page.injectJs('../lib/segment-page.js') !== true) {
+    if (page.injectJs('../lib/smart-markup.segment.js') !== true) {
       var errResponse = {status: 'injectJs error'};
       console.log(JSON.stringify(errResponse));
       phantom.exit();
@@ -36,12 +36,18 @@ page.open(url, function(status) {
 
     // レイアウトデータの取得
     var layoutData = page.evaluate(function() {
-      return SMScraper.run();
+      // 最小ブロックに分割
+      SmartMarkup.divideIntoMinimumBlocks();
+
+      // レイアウトデータの計算
+      SmartMarkup.getLayoutData();
+
+      return SmartMarkup.layoutData;
     });
 
     // 分割後のキャプチャを撮影
     page.evaluate(function() {
-      SMScraper.debug();    // ページを書き換え
+      SmartMarkup.debug();    // ページを書き換え
     });
     var tmpSeparatedImageFilePath = basePath + saveDirPath + '/separated.png';
     page.render(tmpSeparatedImageFilePath);
