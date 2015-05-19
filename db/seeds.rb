@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# サンプルWebページを登録
 [
     'http://www.24-7.co.jp/',
     'http://www.turbine.co.jp/profile/outline',
@@ -29,4 +30,16 @@
     ensure
         puts url
     end
+end
+
+# レイアウトテンプレートを登録
+['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8'].each do |template|
+  layout_pattern = LayoutPattern.new(:name => template)
+  begin
+    layout_pattern.save
+  rescue => err
+    p err.message
+  ensure
+    puts template
+  end
 end
