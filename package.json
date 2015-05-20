@@ -2,5 +2,9 @@
   "name": "admin.smart-markup",
   "dependencies": {
     "phantomjs": "^1.9.16"
+  },
+  "devDependencies": {
+    "cheerio-httpcli": "^0.3.2",
+    "date-utils": "^1.2.16"
   }
 }
