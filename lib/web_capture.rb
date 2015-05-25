@@ -7,7 +7,7 @@ class WebCapture
       puts "[curl] #{http_code}"    # debug
 
       if http_code != '200'
-        puts "#{i}: [HTTP Error] #{http_code}, #{url}"
+        puts "[HTTP Error] #{http_code}, #{url}"
         return false
       end
 
