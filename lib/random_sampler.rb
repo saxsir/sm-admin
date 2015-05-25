@@ -25,9 +25,22 @@ class RandomSampler
 
   # Webページをランダムサンプリングする
   def self.random_sampling
-    keyword = self.get_random_keyword
-    p keyword
-    urls = self.fetch_urls(keyword)
-    p urls
+    # 100データ超えるまでループ
+    while (WebPage.all.size < 100) do
+      query = self.get_random_keyword
+      urls = self.fetch_urls(query)
+
+      # 新しいWebPageモデルを保存
+      urls.each do |url|
+        web_page = WebPage.new(:url => url, :query => query)
+        begin
+          web_page.save
+        rescue => err
+          p err.message
+        ensure
+          puts url
+        end
+      end
+    end
   end
 end
