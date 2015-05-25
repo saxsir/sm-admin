@@ -22,5 +22,12 @@ class RandomSampler
 
     return urls
   end
+
+  # Webページをランダムサンプリングする
+  def self.random_sampling
+    keyword = self.get_random_keyword
+    p keyword
+    urls = self.fetch_urls(keyword)
+    p urls
   end
 end

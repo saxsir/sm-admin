@@ -19,4 +19,4 @@ capture-debug-run:
 capture-bg-run:
 	nohup bin/rails runner HelperScript::capture_images > out.log 2> err.log < /dev/null &
 search:
-	node lib/search.js 'ニュース' > log/search-result.$(DATE).txt
+	bin/rails runner RandomSampler::random_sampling
