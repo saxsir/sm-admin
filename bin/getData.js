@@ -25,7 +25,7 @@ page.open(url, function(status) {
 
     // オリジナル画面のキャプチャ処理
     // e.g. http://example.com/hoge/moge/index.html
-    var basePath = '/tmp/asm-images/';
+    var basePath = '/home/sasamoto/workspace/admin.smart-markup/public/image/';
     var saveDirPath = url.replace(/^http(s)?:\/\//, '')    // 'example.com/hoge/moge/index.html'
         .split('/')    // ['example.com', 'hoge', 'moge', 'index.html']
         .slice(0, -1)    // ['example.com', 'hoge', 'moge']

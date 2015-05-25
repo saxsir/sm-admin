@@ -15,8 +15,8 @@ reset-db:
 	bin/rake db:migrate
 	bin/rake db:seed
 capture-debug-run:
-	bin/rails runner HelperScript::capture_images
+	bin/rails runner WebCapture::capture
 capture-bg-run:
-	nohup bin/rails runner HelperScript::capture_images > out.log 2> err.log < /dev/null &
+	nohup bin/rails runner WebCapture::capture > out.log 2> err.log < /dev/null &
 random-sampling:
 	bin/rails runner RandomSampler::random_sampling

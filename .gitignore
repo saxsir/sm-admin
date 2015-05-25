@@ -33,3 +33,6 @@ node_modules
 
 # Ignore bower coponents.
 vendor/assets/bower_components
+
+# Ignore capture images.
+public/image
