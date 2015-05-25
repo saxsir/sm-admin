@@ -18,5 +18,5 @@ capture-debug-run:
 	bin/rails runner HelperScript::capture_images
 capture-bg-run:
 	nohup bin/rails runner HelperScript::capture_images > out.log 2> err.log < /dev/null &
-search:
+random-sampling:
 	bin/rails runner RandomSampler::random_sampling
