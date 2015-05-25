@@ -11,7 +11,7 @@ class RandomSampler
 
   # 受け取ったクエリでgoogle検索し、上位10件のURLを取得する
   def self.fetch_urls(query)
-    json = `node lib/fetchUrls.js #{query}`
+    json = `node lib/fetchUrls.js '#{query}'`
 
     begin
       urls = JSON.parse(json)
