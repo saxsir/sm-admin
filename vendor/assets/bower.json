@@ -2,6 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "bootstrap": "latest",
-    "slider-pro": "latest"
+    "slider-pro": "latest",
+    "jquery.tablesorter": "latest"
   }
 }
