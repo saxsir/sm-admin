@@ -3,3 +3,4 @@
 
 asset 'bootstrap'
 asset 'slider-pro'
+asset 'jquery.tablesorter'

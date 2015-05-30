@@ -8,3 +8,6 @@
 #         imageScaleMode: 'contain'
 #         # autoHeight: true
 #     return
+$(document).ready ->
+    $('#web-pages').tablesorter()
+    return

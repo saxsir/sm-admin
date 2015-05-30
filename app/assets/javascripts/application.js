@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require jquery.tablesorter/dist/js/jquery.tablesorter
 //= require slider-pro/dist/js/jquery.sliderPro
 //= require_tree .
