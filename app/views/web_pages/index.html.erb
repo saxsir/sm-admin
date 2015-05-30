@@ -21,6 +21,7 @@
             <% url = web_page.url || '' %>
             <%= link_to url, url %>
         </td>
+        <td><%= web_page.layout_pattern ? web_page.layout_pattern.name : '' %></td>
         <td>
             <% url = web_page.capture_image_path || '' %>
             <%= link_to url, url %>
