@@ -29,9 +29,9 @@ page.open(url, function(status) {
     var saveDirPath = url.replace(/^http(s)?:\/\//, '')    // 'example.com/hoge/moge/index.html'
         .split('/')    // ['example.com', 'hoge', 'moge', 'index.html']
         .slice(0, -1)    // ['example.com', 'hoge', 'moge']
-        .join('/');    // 'example.com/hoge/moge
+        .join('-');    // 'example.com-hoge-moge
     // gyazoにアップロードするまでの一時的な保存場所
-    var tmpOriginalImageFilePath = basePath + saveDirPath + '/original.png';
+    var tmpOriginalImageFilePath = basePath + saveDirPath + '-original.png';
     page.render(tmpOriginalImageFilePath);
 
     // レイアウトデータの取得
@@ -49,7 +49,7 @@ page.open(url, function(status) {
     page.evaluate(function() {
       SmartMarkup.debug();    // ページを書き換え
     });
-    var tmpSeparatedImageFilePath = basePath + saveDirPath + '/separated.png';
+    var tmpSeparatedImageFilePath = basePath + saveDirPath + '-separated.png';
     page.render(tmpSeparatedImageFilePath);
 
     var res = {
