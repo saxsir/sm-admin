@@ -17,13 +17,12 @@
   <tbody>
     <% @web_pages.each do |web_page| %>
       <tr>
-        <td><%= web_page.url %></td>
-        <td><%= web_page.layout_pattern_id %></td>
         <td>
-            <% url = web_page.capture_image_path || '' %>
+            <% url = web_page.url || '' %>
             <%= link_to url, url %>
         </td>
         <td>
+            <% url = web_page.capture_image_path || '' %>
             <%= link_to url, url %>
         </td>
         <!--
