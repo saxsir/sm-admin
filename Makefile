@@ -20,3 +20,5 @@ capture-bg-run:
 	nohup bin/rails runner WebCapture::capture > out.log 2> err.log < /dev/null &
 random-sampling:
 	bin/rails runner RandomSampler::random_sampling
+matching-template:
+	bin/rails runner MatchingTemplate::run
