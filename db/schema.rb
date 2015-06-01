@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511073419) do
+ActiveRecord::Schema.define(version: 20150601081430) do
 
   create_table "layout_patterns", force: :cascade do |t|
     t.string   "name",       null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150511073419) do
     t.datetime "captured_at"
     t.text     "layout_data"
     t.string   "separated_image_path"
+    t.integer  "matching_result"
   end
 
   add_index "web_pages", ["url"], name: "index_web_pages_on_url", unique: true

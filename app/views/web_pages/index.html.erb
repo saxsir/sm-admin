@@ -7,7 +7,8 @@
     <tr>
       <th>Url</th>
       <th>Layout pattern</th>
-      <th>Capture image path</th>
+      <th>Matching result</th>
+      <!-- <th>Capture image path</th> -->
       <!-- <th>Separated image path</th> -->
       <!-- <th>Note</th> -->
       <th colspan="3"></th>
@@ -22,10 +23,13 @@
             <%= link_to url, url %>
         </td>
         <td><%= web_page.layout_pattern ? web_page.layout_pattern.name : '' %></td>
+        <td><%= web_page.matching_result ? 'T' + web_page.matching_result.to_s : '' %></td>
+        <!--
         <td>
             <% url = web_page.capture_image_path || '' %>
             <%= link_to url, url %>
         </td>
+        -->
         <!--
         <td>
           <% url = web_page.separated_image_path || '' %>
