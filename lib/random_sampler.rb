@@ -32,6 +32,10 @@ class RandomSampler
 
       # 新しいWebPageモデルを保存
       urls.each do |url|
+        # scrubは不正なマルチバイト文字対策
+        # refs http://blog.livedoor.jp/sonots/archives/34702351.html
+        next unless `curl -sL #{url}`.force_encoding('UTF-8').scrub('?').match(/\<!doctype html\>/i)
+
         web_page = WebPage.new(:url => url, :query => query)
         begin
           web_page.save
