@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601081430) do
+ActiveRecord::Schema.define(version: 20150902074453) do
 
   create_table "layout_patterns", force: :cascade do |t|
     t.string   "name",       null: false
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20150601081430) do
 
   create_table "web_pages", force: :cascade do |t|
     t.string   "url",                  null: false
-    t.string   "query",                null: false
     t.string   "capture_image_path"
     t.integer  "layout_pattern_id"
     t.text     "note"
