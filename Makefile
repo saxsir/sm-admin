@@ -22,3 +22,5 @@ random-sampling:
 	bin/rails runner RandomSampler::random_sampling
 matching-template:
 	bin/rails runner MatchingTemplate::run
+insert-urls:
+	bin/rails runner Utils::insert_urls

@@ -17,7 +17,9 @@
     </div>
   <% end %>
 
-  <%= @web_page.url %>
+  <a href="<%= @web_page.url %>">
+    <%= @web_page.url %>
+  </a>
 
   <div class="field">
     <%= f.label :layout_pattern_id %><br>
